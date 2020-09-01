@@ -6,18 +6,24 @@ import '../../App.css'
 
 export default class componentName extends Component {
 
-    slideImages = [
-        'https://via.placeholder.com/150/92c952',
-        'https://via.placeholder.com/150/d32776',
-        'https://via.placeholder.com/150/771796'
-    ];
 
-    Slideshow = () => {
+
+
+    Slideshow = (optionData, updatFeedbackState, updateMarks) => {
         return (
             <div className="slide-container">
                 <Zoom scale={0.1}>
                     {
-                        this.slideImages.map((each, index) => <img key={index} style={{ width: "100%" }} src={each} />)
+                        optionData.map((each, index) => {
+                            return (
+                                <div>
+                                    <img key={index} style={{ width: "100%" }} src={each.image} />
+                                    <div className={'selectButtonContainer'}>
+                                        <button onClick={() => { updatFeedbackState(each.feedBack); updateMarks(each.marks) }}>{each.name}</button>
+                                    </div>
+                                </div>
+                            )
+                        })
                     }
                 </Zoom>
             </div>
@@ -25,10 +31,13 @@ export default class componentName extends Component {
     }
 
     render() {
+        let optionData = this.props.data.options
+        let updatFeedbackState = this.props.updatFeedbackState
+        let updateMarks = this.props.updateMarks
         return (
             <div className='slider'>
                 {
-                    this.Slideshow()
+                    this.Slideshow(optionData, updatFeedbackState, updateMarks)
                 }
             </div>
         );
