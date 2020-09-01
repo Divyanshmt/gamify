@@ -15,7 +15,7 @@ export default class componentName extends Component {
     Slideshow = () => {
         return (
             <div className="slide-container">
-                <Zoom scale={0.4}>
+                <Zoom scale={0.1}>
                     {
                         this.slideImages.map((each, index) => <img key={index} style={{ width: "100%" }} src={each} />)
                     }
